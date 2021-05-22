@@ -19,7 +19,7 @@ class UserLoginTableSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserLoginTable
-        fields = ('user_id', 'user_name', 'last_name', 'email', 'phone','gender','password', 'profile_img', 'create_at', 'comment', 'status','address','state','city')
+        fields = ('user_id', 'user_name', 'last_name', 'email', 'phone','gender','password', 'profile_img', 'create_at', 'comment', 'status','address','state','city','token')
        
 
 class CreateRoomTableSerializer(serializers.ModelSerializer):

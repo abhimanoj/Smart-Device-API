@@ -56,6 +56,7 @@ class UserLoginTable(models.Model):
     address = models.CharField(max_length=500,null=True, db_column='address')
     state = models.CharField(max_length=500,null=True, db_column='state')
     city = models.CharField(max_length=500,null=True, db_column='city')
+    token = models.CharField(max_length=800,null=True, db_column='token')
 
     
 
@@ -75,6 +76,7 @@ class UserLoginTable(models.Model):
         table_data['address'] = self.address 
         table_data['state'] = self.state 
         table_data['city'] = self.city 
+        table_data['token'] = self.token 
 
         return json.dumps(table_data)
  
