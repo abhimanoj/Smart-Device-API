@@ -101,7 +101,7 @@ class CreateRoomTableViewSet(viewsets.ModelViewSet):
     #Apply Filter..
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     
-    filterset_fields = ('room_id','room_name','user_login','is_motion_on')
+    filterset_fields = ('room_id','user_data', 'house_id','room_name','is_motion_on')
     #Apply Sorting..
     ordering_fields = ['create_at']
     #Serchalble Fields..
@@ -121,7 +121,7 @@ class GetDeviceTableSerializer(viewsets.ModelViewSet):
     #Apply Filter..
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     
-    filterset_fields = ('device_id','user_login_id','get_room_id','device_on','device_name')
+    filterset_fields = ('device_id','hardware_id','user_login_id','get_room_id','device_on','device_name')
     #Apply Sorting..
     ordering_fields = ['create_at']
     #Serchalble Fields..
@@ -140,7 +140,7 @@ class CreateDeviceTableViewSet(viewsets.ModelViewSet):
     #Apply Filter..
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     
-    filterset_fields = ('device_id','user_login_id','get_room_id','device_name')
+    filterset_fields = ('device_id','hardware_id','user_login_id','get_room_id','device_name')
     #Apply Sorting..
     ordering_fields = ['create_at']
     #Serchalble Fields..
@@ -159,17 +159,49 @@ class MotionDetectionTableViewSet(viewsets.ModelViewSet):
     #Apply Filter..
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     
-    filterset_fields = ('motion_device_id','device_on','device_off')
+    filterset_fields = ('motion_device_id','hardware_id','device_on','device_off')
     #Apply Sorting..
     ordering_fields = ['create_at']
     #Serchalble Fields..
     search_fields = ['status']
 
 
+class CreateHouseTableViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides details of house.
+    """
+    queryset = CreateHouseTable.objects.all()
+    serializer_class = CreateHouseTableSerializer
+    permission_classes = (IsAuthenticated,) #permission classes
 
 
+    #Apply Filter..
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    
+    filterset_fields = ('house_name','user_details','house_id')
+    #Apply Sorting..
+    ordering_fields = ['create_at']
+    #Serchalble Fields..
+    search_fields = ['status']
 
 
+class HistoryTableViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides details of house.
+    """
+    queryset = HistoryTable.objects.all()
+    serializer_class = HistoryTableSerializer
+    permission_classes = (IsAuthenticated,) #permission classes
+
+
+    #Apply Filter..
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    
+    filterset_fields = ('hardware', 'house_info', 'user_info', 'device_name', 'event_name')
+    #Apply Sorting..
+    ordering_fields = ['create_at']
+    #Serchalble Fields..
+    search_fields = ['status']
 
 
 @api_view(['GET','POST'])

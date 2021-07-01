@@ -18,6 +18,8 @@ router.register(r'create-room', rest_views.CreateRoomTableViewSet, 'create-room'
 router.register(r'create-device', rest_views.CreateDeviceTableViewSet, 'create-device')
 router.register(r'get-device', rest_views.GetDeviceTableSerializer, 'get-device')
 router.register(r'get-motion-detection', rest_views.MotionDetectionTableViewSet, 'get-motion-detection')
+router.register(r'get-house-details', rest_views.CreateHouseTableViewSet, 'get-house-details')
+router.register(r'get-history-details', rest_views.HistoryTableViewSet, 'get-history-details')
 
 
 schema_view = get_schema_view(title='Smart Device Rest API', renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer])
